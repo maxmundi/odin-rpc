@@ -1,0 +1,55 @@
+body {
+    margin: 0px;
+    background-color: black;
+}
+
+* {
+    color: #f9faf8;
+    font-family: "Arial Narrow", "Times New Roman", Verdana;
+}
+
+button {
+    color: #000;
+}
+
+#headerOne {
+    font-size: 100px;
+    text-align: center;
+    margin: 20px 50px 0px 50px;
+}
+
+#headerTwo {
+    font-size: 43px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+#buttons {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+#scores {
+    display: flex;
+    gap: 20px;
+    padding: 50px;
+}
+
+#computerScore,
+#playerScore {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

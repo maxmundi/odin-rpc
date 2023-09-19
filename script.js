@@ -1,40 +1,72 @@
 /* Get computer choice via random number generation */
 function getComputerChoice() {
-    let arr = ["rock", "paper", "sciccors"];
+    let arr = ["rock", "paper", "scissors"];
     return (arr[Math.floor(Math.random() * 3)]);
 }
 
-/* Get a player choice via input */
-function getPlayerChoice() {
-    let input = "empty";
-    let keepGoing = true;
-    while (keepGoing) {
-        input = prompt("Please type rock, paper, or scissors.").toLowerCase();
-        if (input == "rock" || input == "paper" || input == "scissors") {
-            return input;
-            keepGoing = false;
+function postResults(outcome) {
+    const results = document.querySelector("#results");
+    let compScore = document.querySelector('#computerCount');
+    let playerScore = document.querySelector('#playerCount')
+    const compWins = document.createElement("h2");
+    const playerWins = document.createElement("h2");
+    const draw = document.createElement("h2");
+    const compGame = document.createElement("h2");
+    const playerGame = document.createElement("h2");
+
+
+
+    compWins.textContent = "The Computer wins that round.";
+    playerWins.textContent = "You win that round!";
+    draw.textContent = "It's a draw.";
+    compGame.textContent = "Game! The computer wins.";
+    playerGame.textContent = "Game! You win!";
+
+    if (results.firstChild) {
+        results.removeChild(results.firstChild);
+    }
+    if (outcome == "draw") {
+        results.appendChild(draw);
+    } else if (outcome == "computer") {
+        compScore.textContent++;
+        if (compScore.innerHTML == 5) {
+            results.appendChild(compGame);
         } else {
-            console.log("Incorrect input. Please try again.");
+            results.appendChild(compWins);
+        }
+    } else {
+        playerScore.textContent++;
+        if (playerScore.innerHTML == 5) {
+            results.appendChild(playerGame);
+        } else {
+            results.appendChild(playerWins);
         }
     }
 }
 
 /* Play one round and return the resulting victor */
-function playRound() {
+function playRound(playerChoice) {
     let computerChoice = getComputerChoice();
-    let playerChoice = getPlayerChoice();
     if (computerChoice == playerChoice) {
-        return "draw";
+        postResults("draw");
     } else if (
         (playerChoice == "rock" && computerChoice == "paper") ||
         (playerChoice == "paper" && computerChoice == "scissors") ||
         (playerChoice == "scissors" && computerChoice == "rock")
     ) {
-        return "computer";
+        postResults("computer");
     } else {
-        return "player";
+        postResults("player");
     }
 }
+
+document.querySelector("#rock").addEventListener("click", () => playRound("rock"));
+document.querySelector("#paper").addEventListener("click", () => playRound("paper"));
+document.querySelector("#scissors").addEventListener("click", () => playRound("scissors"));
+
+
+
+/*
 
 function game() {
     let response = prompt("Want to play? (yes/no)");
@@ -66,4 +98,6 @@ function game() {
         }
     }
 }
-console.log(game());
+
+
+*/
